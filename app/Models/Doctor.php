@@ -19,17 +19,17 @@ class Doctor extends Model
         return $this->belongsTo('App\Models\Admin');
     }
 
-    public function patient_admits()
+    public function patientAdmits()
     {
         return $this->hasMany('App\Models\PatientAdmit');
     }
 
-    public function doctor_appointments()
+    public function doctorAppointments()
     {
         return $this->hasMany('App\Models\DoctorAppointment');
     }
 
-    public function doctor_consult_dates()
+    public function doctorConsultDates()
     {
         return $this->hasMany('App\Models\DoctorConsultDate');
     }

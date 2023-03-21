@@ -13,8 +13,8 @@ class TherapyAppointmentDateAndTime extends Model
         'therapy_appointment_id', 'therapist','therapy','date','start_time','end_time',
     ];
 
-    public function therapy_appointment()
+    public function therapyAppointment()
     {
-        return $this->belongsTo('App\Model\TherapyAppointment');
+        return $this->belongsTo('App\Models\TherapyAppointment');
     }
 }

@@ -14,9 +14,9 @@ class TherapyList extends Model
     ];
 
 
-    public function therapy_details()
+    public function therapyDetails()
     {
-        return $this->hasMany('App\Model\TherapyDetail');
+        return $this->hasMany('App\Models\TherapyDetail');
     }
 
 

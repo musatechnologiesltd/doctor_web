@@ -71,13 +71,13 @@ Doctor List | {{ $ins_name }}
                                         <td class="customer_name">{{ $allDoctorList->name }}</td>
                                         <td class="email">{{ $allDoctorList->email_address }}</td>
                                         <td class="phone">{{ $allDoctorList->phone_or_mobile_number }}</td>
-                                        <?php $allDoctorList->doctor_consult_dates ?>
+                                        <?php $allDoctorList->doctorConsultDates ?>
                                         <td class="status"><span class="badge badge-soft-success text-uppercase">
 
 
 
 
-                                            @foreach($allDoctorList->doctor_consult_dates as $allConsultTime)
+                                            @foreach($allDoctorList->doctorConsultDates as $allConsultTime)
                                        Day: {{ $allConsultTime->day }} , StartTime:{{ $allConsultTime->start_time }} ,EndTime:{{ $allConsultTime->end_time }} <br><br>
 
                                             @endforeach
@@ -90,12 +90,17 @@ Doctor List | {{ $ins_name }}
                                                     <i class="ri-more-fill align-middle"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a href="profile.php" class="dropdown-item"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
-                                                    <li><a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
+                                                    <li><a href="{{ route('doctorView',$allDoctorList->id) }}" class="dropdown-item"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
+                                                    <li><a href="{{ route('doctorEdit',$allDoctorList->id) }}" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
                                                     <li>
-                                                        <a class="dropdown-item remove-item-btn">
+                                                        <a class="dropdown-item remove-item-btn" onclick="deleteTag({{ $allDoctorList->id}})" >
                                                             <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
                                                         </a>
+                                                        <form id="delete-form-{{ $allDoctorList->id }}" action="{{ route('doctorDelete',$allDoctorList->id) }}" method="POST" style="display: none;">
+                                                            @method('DELETE')
+                                                                                          @csrf
+
+                                                                                      </form>
                                                     </li>
                                                 </ul>
                                             </div>

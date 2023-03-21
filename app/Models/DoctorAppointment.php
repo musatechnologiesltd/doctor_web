@@ -15,13 +15,13 @@ class DoctorAppointment extends Model
 
     public function admin()
     {
-        return $this->belongsTo('App\Model\Admin');
+        return $this->belongsTo('App\Models\Admin');
     }
 
 
 
     public function doctor()
     {
-        return $this->belongsTo('App\Model\Doctor');
+        return $this->belongsTo('App\Models\Doctor');
     }
 }

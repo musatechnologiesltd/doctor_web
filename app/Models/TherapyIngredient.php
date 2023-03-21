@@ -13,9 +13,9 @@ class TherapyIngredient extends Model
         'name',
     ];
 
-    public function therapy_details()
+    public function therapyDetails()
     {
-        return $this->belongsToMany('App\Model\TherapyDetail')->withTimestamps();
+        return $this->belongsToMany('App\Models\TherapyDetail')->withTimestamps();
     }
 
 

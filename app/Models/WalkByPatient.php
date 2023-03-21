@@ -15,12 +15,12 @@ class WalkByPatient extends Model
 
     public function admin()
     {
-        return $this->belongsTo('App\Model\Admin');
+        return $this->belongsTo('App\Models\Admin');
     }
 
-    public function walk_by_patient_services()
+    public function walkByPatientServices()
     {
-        return $this->hasMany('App\Model\WalkByPatientService');
+        return $this->hasMany('App\Models\WalkByPatientService');
     }
 
 

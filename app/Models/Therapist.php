@@ -15,6 +15,6 @@ class Therapist extends Model
 
     public function admin()
     {
-        return $this->belongsTo('App\Model\Admin');
+        return $this->belongsTo('App\Models\Admin');
     }
 }

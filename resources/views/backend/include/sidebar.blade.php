@@ -160,6 +160,50 @@
                 @endif
 
 
+                @if (Route::is('dietCharts.index') ||  Route::is('medicineLists.index') || Route::is('healthSupplements.index') || Route::is('therapyIngredients.index') || Route::is('therapyLists.index'))
+
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#prescriptionList" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarTables">
+                        <i class="ri-landscape-line"></i> <span data-key="t-tables">Prescription Equipment </span>
+                    </a>
+                    <div class="collapse menu-dropdown show" id="prescriptionList">
+                        <ul class="nav nav-sm flex-column">
+                            @if ( $usr->can('dietChartsAdd')  || $usr->can('dietChartsView') ||  $usr->can('dietChartsDelete') ||  $usr->can('dietChartsUpdate'))
+                            <li class="nav-item">
+                                <a href="{{ route('dietCharts.index') }}" class="nav-link {{ Route::is('dietCharts.index') ? 'active' : '' }}" data-key="t-basic-tables">Diet Chart</a>
+                            </li>
+                            @endif
+                            @if ( $usr->can('medicineListsAdd')  || $usr->can('medicineListsView') ||  $usr->can('medicineListsDelete') ||  $usr->can('medicineListsUpdate'))
+                            <li class="nav-item">
+                                <a href="{{ route('medicineLists.index') }}" class="nav-link {{ Route::is('medicineLists.index') ? 'active' : '' }}" data-key="t-grid-js">Medicine List</a>
+                            </li>
+                            @endif
+                            @if ( $usr->can('healthSupplementsAdd')  || $usr->can('healthSupplementsView') ||  $usr->can('healthSupplementsDelete') ||  $usr->can('healthSupplementsUpdate'))
+                            <li class="nav-item">
+                                <a href="{{ route('healthSupplements.index') }}" class="nav-link {{ Route::is('healthSupplements.index') ? 'active' : '' }}" data-key="t-grid-js">Health Supplement</a>
+                            </li>
+                            @endif
+
+                            @if ( $usr->can('therapyIngredientsAdd')  || $usr->can('therapyIngredientsView') ||  $usr->can('therapyIngredientsDelete') ||  $usr->can('therapyIngredientsUpdate'))
+                            <li class="nav-item">
+                                <a href="{{ route('therapyIngredients.index') }}" class="nav-link {{ Route::is('therapyIngredients.index') ? 'active' : '' }}" data-key="t-grid-js">Therapy Ingredient</a>
+                            </li>
+                            @endif
+
+                            @if ( $usr->can('therapyListsAdd')  || $usr->can('therapyListsView') ||  $usr->can('therapyListsDelete') ||  $usr->can('therapyListsUpdate'))
+                            <li class="nav-item">
+                                <a href="{{ route('therapyLists.index') }}" class="nav-link {{ Route::is('therapyLists.index') ? 'active' : '' }}" data-key="t-grid-js">Therapy List</a>
+                            </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
+                @else
+
+
+
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#prescriptionList" data-bs-toggle="collapse" role="button"
                        aria-expanded="false" aria-controls="sidebarTables">
@@ -167,36 +211,55 @@
                     </a>
                     <div class="collapse menu-dropdown" id="prescriptionList">
                         <ul class="nav nav-sm flex-column">
+                            @if ( $usr->can('dietChartsAdd')  || $usr->can('dietChartsView') ||  $usr->can('dietChartsDelete') ||  $usr->can('dietChartsUpdate'))
                             <li class="nav-item">
-                                <a href="diet_chart_list.php" class="nav-link" data-key="t-basic-tables">Diet Chart</a>
+                                <a href="{{ route('dietCharts.index') }}" class="nav-link {{ Route::is('dietCharts.index') ? 'active' : '' }}" data-key="t-basic-tables">Diet Chart</a>
                             </li>
+                            @endif
+                            @if ( $usr->can('medicineListsAdd')  || $usr->can('medicineListsView') ||  $usr->can('medicineListsDelete') ||  $usr->can('medicineListsUpdate'))
                             <li class="nav-item">
-                                <a href="medicine_list.php" class="nav-link" data-key="t-grid-js">Medicine List</a>
+                                <a href="{{ route('medicineLists.index') }}" class="nav-link {{ Route::is('medicineLists.index') ? 'active' : '' }}" data-key="t-grid-js">Medicine List</a>
                             </li>
+                            @endif
+                            @if ( $usr->can('healthSupplementsAdd')  || $usr->can('healthSupplementsView') ||  $usr->can('healthSupplementsDelete') ||  $usr->can('healthSupplementsUpdate'))
                             <li class="nav-item">
-                                <a href="suppliment_list.php" class="nav-link" data-key="t-grid-js">Health Supplement</a>
+                                <a href="{{ route('healthSupplements.index') }}" class="nav-link {{ Route::is('healthSupplements.index') ? 'active' : '' }}" data-key="t-grid-js">Health Supplement</a>
                             </li>
+                            @endif
+
+                            @if ( $usr->can('therapyIngredientsAdd')  || $usr->can('therapyIngredientsView') ||  $usr->can('therapyIngredientsDelete') ||  $usr->can('therapyIngredientsUpdate'))
                             <li class="nav-item">
-                                <a href="therapy_list.php" class="nav-link" data-key="t-grid-js">Therapy List</a>
+                                <a href="{{ route('therapyIngredients.index') }}" class="nav-link {{ Route::is('therapyIngredients.index') ? 'active' : '' }}" data-key="t-grid-js">Therapy Ingredient</a>
                             </li>
+                            @endif
+
+                            @if ( $usr->can('therapyListsAdd')  || $usr->can('therapyListsView') ||  $usr->can('therapyListsDelete') ||  $usr->can('therapyListsUpdate'))
+                            <li class="nav-item">
+                                <a href="{{ route('therapyLists.index') }}" class="nav-link {{ Route::is('therapyLists.index') ? 'active' : '' }}" data-key="t-grid-js">Therapy List</a>
+                            </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
 
+
+
+                @endif
+
                 <li class="menu-title"><span data-key="t-menu">HR Section</span></li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="staff_list.php">
+                    <a class="nav-link menu-link {{ Route::is('staff.index') ? 'active' : '' }}" href="{{ route('staff.index') }}">
                         <i class="ri-align-justify"></i> <span data-key="t-widgets">Staff</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="reward_point.php">
+                    <a class="nav-link menu-link {{ Route::is('reward.index') ? 'active' : '' }}" href="{{ route('reward.index') }}">
                         <i class="ri-paypal-fill"></i> <span data-key="t-widgets">Reward</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="therapist_list.php">
+                    <a class="nav-link menu-link {{ Route::is('therapist.index') ? 'active' : '' }}" href="{{ route('therapist.index') }}">
                         <i class="ri-barricade-fill"></i> <span data-key="t-widgets">Therapist</span>
                     </a>
                 </li>

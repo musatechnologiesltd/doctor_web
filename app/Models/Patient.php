@@ -15,11 +15,11 @@ class Patient extends Model
 
     public function admin()
     {
-        return $this->belongsTo('App\Model\Admin');
+        return $this->belongsTo('App\Models\Admin');
     }
 
-    public function patient_files()
+    public function patientFiles()
     {
-        return $this->hasMany('App\Model\PatientFile');
+        return $this->hasMany('App\Models\PatientFile');
     }
 }

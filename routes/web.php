@@ -14,6 +14,15 @@ use App\Http\Controllers\Admin\ForgetPasswordController;
 use App\Http\Controllers\WalkByPatientController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\PatientAdmitController;
+use App\Http\Controllers\DietChartController;
+use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\HealthSupplementController;
+use App\Http\Controllers\TherapyListController;
+use App\Http\Controllers\TherapyIngredientController;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\RewardController;
+use App\Http\Controllers\TherapistController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -93,14 +102,34 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/doctorUpdate', 'update')->name('doctorUpdate');
         Route::get('/doctorEdit/{id}', 'edit')->name('doctorEdit');
         Route::get('/doctorView/{id}', 'view')->name('doctorView');
+        Route::delete('doctorDelete/{id}','delete')->name('doctorDelete');
     });
 
     //doctor_route
 
+    //Prescription Equipment  Route
+
+    Route::resource('dietCharts', DietChartController::class);
+    Route::resource('medicineLists', MedicineController::class);
+    Route::resource('healthSupplements', HealthSupplementController::class);
+    Route::resource('therapyLists', TherapyListController::class);
+    Route::resource('therapyIngredients', TherapyIngredientController::class);
+
+// Prescription Equipment  Route
 
 
+//staff route add
+Route::resource('staff',StaffController::class);
+//end staff route
 
 
+//reward route start
+Route::resource('reward',RewardController::class);
+//end reward route
+
+//therapist route
+Route::resource('therapist',TherapistController::class);
+//end therapist route
 
 
 
