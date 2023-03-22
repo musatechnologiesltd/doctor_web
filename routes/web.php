@@ -57,40 +57,28 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     //walk_by_patient_route
-    Route::controller(WalkByPatientController::class)->group(function () {
-        Route::get('/walkByPatientCreate', 'create')->name('walkByPatientCreate');
-        Route::get('/walkByPatientList', 'index')->name('walkByPatientList');
-        Route::post('/walkByPatientStore', 'store')->name('walkByPatientStore');
-        Route::post('/walkByPatientUpdate', 'update')->name('walkByPatientUpdate');
-        Route::get('/walkByPatientEdit/{id}', 'edit')->name('walkByPatientEdit');
-        Route::get('/walkByPatientView/{id}', 'view')->name('walkByPatientView');
-    });
+      Route::resource('walkByPatients', WalkByPatientController::class);
 
+      Route::controller(WalkByPatientController::class)->group(function () {
+
+        Route::get('/transferToPatientList/{id}', 'transferToPatientList')->name('transferToPatientList');
+    });
     //end_walk_by_patient_route
 
     //patient_route
-    Route::controller(PatientController::class)->group(function () {
-        Route::get('/patientCreate', 'create')->name('patientCreate');
-        Route::get('/patientList', 'index')->name('patientList');
-        Route::post('/patientStore', 'store')->name('patientStore');
-        Route::post('/patientUpdate', 'update')->name('patientUpdate');
-        Route::get('/patientEdit/{id}', 'edit')->name('patientEdit');
-        Route::get('/patientView/{id}', 'view')->name('patientView');
-    });
+     Route::resource('patients', PatientController::class);
 
+     Route::controller(PatientController::class)->group(function () {
+
+        Route::post('/patientFileUpdate', 'patientFileUpdate')->name('patientFileUpdate');
+
+        Route::delete('patientFileDelete/{id}','patientFileDelete')->name('patientFileDelete');
+    });
     //patient_route
 
 
     //patient_admit_route
-    Route::controller(PatientAdmitController::class)->group(function () {
-        Route::get('/patientAdmitCreate', 'create')->name('patientAdmitCreate');
-        Route::get('/patientAdmitList', 'index')->name('patientAdmitList');
-        Route::post('/patientAdmitStore', 'store')->name('patientAdmitStore');
-        Route::post('/patientAdmitUpdate', 'update')->name('patientAdmitUpdate');
-        Route::get('/patientAdmitEdit/{id}', 'edit')->name('patientAdmitEdit');
-        Route::get('/patientAdmitView/{id}', 'view')->name('patientAdmitView');
-    });
-
+    Route::resource('patientAdmits', PatientAdmitController::class);
     //patient_admit_route
 
 

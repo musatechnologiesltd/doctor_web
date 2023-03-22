@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2023 at 12:40 PM
+-- Generation Time: Mar 22, 2023 at 12:45 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -53,7 +53,9 @@ INSERT INTO `admins` (`id`, `staff_id`, `therapist_id`, `name`, `position`, `ema
 (1, NULL, NULL, 'superadmin', NULL, 'superadmin@gmail.com', NULL, 'superadmin', NULL, '$2y$10$grm3z53L5a25UmMn2IN3k.rCggUR1xCXYKE6eO6yg6M6fN4RAQC8C', 'user-photo/1665758734.png', '1', NULL, '2021-03-24 05:29:53', '2023-03-05 00:11:11'),
 (2, NULL, NULL, 'admin', NULL, 'admin@gmail.com', '666', 'admin', NULL, '$2y$10$E.AdnAg2QNhGUkTxEGNlSOpiczjg9s4PhCd/zKR/PKLTY.rPbo4g2', NULL, '1', NULL, '2021-03-24 06:14:00', '2022-10-28 05:15:49'),
 (3, NULL, NULL, 'waiter', NULL, 'w@gmail.com', '12123', 'waiter', NULL, '$2y$10$f/vpvB5T88oGrPsrylXk2.khVIDr.P3K2BYCchZRVRrMWUupClstm', NULL, '1', NULL, '2023-01-06 23:51:06', '2023-01-06 23:51:06'),
-(4, NULL, NULL, 'Kamruzzaman kajol', NULL, 'kk@gmail.com', '01646735100', 'kamruzzaman-kajol', NULL, '$2y$10$/uUyrXAyK6IRT31zs5ybzOpzRHvmuBj0RacLR3C54EdADtJS4z2lm', NULL, '1', NULL, '2023-03-04 23:53:56', '2023-03-04 23:53:56');
+(4, NULL, NULL, 'Kamruzzaman kajol', NULL, 'kk@gmail.com', '01646735100', 'kamruzzaman-kajol', NULL, '$2y$10$/uUyrXAyK6IRT31zs5ybzOpzRHvmuBj0RacLR3C54EdADtJS4z2lm', NULL, '1', NULL, '2023-03-04 23:53:56', '2023-03-04 23:53:56'),
+(5, 1, NULL, 'erh756KNy52', NULL, '7RpgnjW8eq2', 'Y6MLQhKARY2', 'erh756kny5', NULL, '$2y$10$/KeNN5vbGcTXzysgAC.j.u2qEA.oJy7T/usACW7AGosqsYHan.IgO', NULL, '1', NULL, '2023-03-21 23:52:40', '2023-03-21 23:52:57'),
+(6, 1, NULL, 'rI7LvUz0mV', NULL, 'V3JdPzss3H', '6N7YChjWAh', 'ri7lvuz0mv', NULL, '$2y$10$IBsfdRw16E46hCzMhVMwcuFWj2nkFq3VuqJyS06txXgR5vVs7sRey', NULL, '1', NULL, '2023-03-22 00:16:19', '2023-03-22 00:16:19');
 
 -- --------------------------------------------------------
 
@@ -314,9 +316,11 @@ CREATE TABLE `model_has_roles` (
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\Models\\Admin', 1),
 (1, 'App\\User', 1),
+(2, 'App\\Models\\Admin', 6),
 (3, 'App\\Models\\Admin', 2),
 (3, 'App\\Models\\Admin', 3),
-(3, 'App\\Models\\Admin', 4);
+(3, 'App\\Models\\Admin', 4),
+(3, 'App\\Models\\Admin', 5);
 
 -- --------------------------------------------------------
 
@@ -357,6 +361,14 @@ CREATE TABLE `patients` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `patients`
+--
+
+INSERT INTO `patients` (`id`, `admin_id`, `image`, `patient_id`, `name`, `refer_from`, `age`, `gender`, `address`, `email_address`, `phone_or_mobile_number`, `nid_number`, `nationality`, `how_did_you_come_to_know_about_this_center`, `do_you_have_earlier_experience_of_ayurveda_please_give_details`, `do_you_have_symptoms_in_past_one_weak`, `covid_test_result`, `created_at`, `updated_at`) VALUES
+(1, 1, 'public/uploads/banner1.png', '220323100307', '7HnmZIEHpo', 'bBMVeyDePV', 'ovrKDHy3mE', 'Male', 'XcahIZ6UA6', 'akny2@0yzp.com', 'e9dsRhiX2A', 'w3ZKCLW7jh', '5YfzgZP3bJ', 'YgiJg0snyL', 'iPek6e823y', 'W2Rx6MPyAA', 'Yes', '2023-03-22 04:03:07', '2023-03-22 04:03:07'),
+(2, 1, 'public/uploads/banner1.png', '220323104649', 'F6idQ3M1Bs', 'RIBDewaNUD', 'tep3rwuHoh', 'Male', '1SQeTB1pli', 'qqgjt@ilvz.com', 'tMLYSCeR3E', 'ugomc@hur7.com', 'zytyuZDZ9N', 'siUgh7729c', 'gXoiTcYWmX', 'S6TVupGu2y', 'Yes', '2023-03-22 04:46:49', '2023-03-22 04:46:49');
 
 -- --------------------------------------------------------
 
@@ -402,6 +414,14 @@ CREATE TABLE `patient_files` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `patient_files`
+--
+
+INSERT INTO `patient_files` (`id`, `patient_id`, `name`, `file`, `created_at`, `updated_at`) VALUES
+(1, 1, 'pfFDr9Qgnq', 'public/uploads/4ee85515-2f0a-485a-9b18-2a2b15d43896.jpg', '2023-03-22 04:03:07', '2023-03-22 04:33:11'),
+(2, 1, 'erewr', 'public/uploads/banner1.png', '2023-03-22 04:03:07', '2023-03-22 04:03:07');
 
 -- --------------------------------------------------------
 
@@ -529,6 +549,13 @@ CREATE TABLE `rewards` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rewards`
+--
+
+INSERT INTO `rewards` (`id`, `name`, `reward_for`, `point`, `in_exchange`, `amount`, `created_at`, `updated_at`) VALUES
+(1, 'Bosun', 'For Product', '77', '77', '77', '2023-03-22 00:29:57', '2023-03-22 00:29:57');
 
 -- --------------------------------------------------------
 
@@ -714,6 +741,13 @@ CREATE TABLE `therapists` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `therapists`
+--
+
+INSERT INTO `therapists` (`id`, `admin_id`, `name`, `email`, `phone_or_mobile_number`, `address`, `nid_number`, `nationality`, `dob`, `years_of_experience`, `created_at`, `updated_at`) VALUES
+(1, 1, 'rI7LvUz0mV', 'V3JdPzss3H', '6N7YChjWAh', '24gHZPWNai', 'nXf5QcZkyg', 'kWCyv3tFJW', '2023-03-23', 'duHor6QyRK', '2023-03-22 00:16:19', '2023-03-22 00:16:19');
 
 -- --------------------------------------------------------
 
@@ -927,6 +961,13 @@ CREATE TABLE `walk_by_patients` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `walk_by_patients`
+--
+
+INSERT INTO `walk_by_patients` (`id`, `image`, `admin_id`, `patient_reg_id`, `name`, `refer_from`, `age`, `gender`, `address`, `email_address`, `phone_or_mobile_number`, `nid_number`, `nationality`, `how_did_you_come_to_know_about_this_center`, `do_you_have_earlier_experience_of_ayurveda_please_give_details`, `do_you_have_symptoms_in_past_one_weak`, `covid_test_result`, `created_at`, `updated_at`) VALUES
+(2, 'public/uploads/banner1.png', 1, '220323092352', 'F6idQ3M1Bs', 'RIBDewaNUD', 'tep3rwuHoh', 'Male', '1SQeTB1pli', 'qqgjt@ilvz.com', 'tMLYSCeR3E', 'ugomc@hur7.com', 'zytyuZDZ9N', 'siUgh7729c', 'gXoiTcYWmX', 'S6TVupGu2y', 'Yes', '2023-03-22 02:58:46', '2023-03-22 03:23:52');
+
 -- --------------------------------------------------------
 
 --
@@ -941,6 +982,14 @@ CREATE TABLE `walk_by_patient_services` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `walk_by_patient_services`
+--
+
+INSERT INTO `walk_by_patient_services` (`id`, `walk_by_patient_id`, `name`, `detail`, `created_at`, `updated_at`) VALUES
+(3, 2, 'Hepatitis B positive', 'l6mWu4K0tU', '2023-03-22 03:23:52', '2023-03-22 03:23:52'),
+(4, 2, 'Chronic illness', 'rDavTsO3zv', '2023-03-22 03:23:52', '2023-03-22 03:23:52');
 
 --
 -- Indexes for dumped tables
@@ -1172,7 +1221,7 @@ ALTER TABLE `walk_by_patient_services`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `diet_charts`
@@ -1226,7 +1275,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `patient_admits`
@@ -1238,7 +1287,7 @@ ALTER TABLE `patient_admits`
 -- AUTO_INCREMENT for table `patient_files`
 --
 ALTER TABLE `patient_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1256,7 +1305,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `rewards`
 --
 ALTER TABLE `rewards`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -1268,13 +1317,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `therapists`
 --
 ALTER TABLE `therapists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `therapy_appointments`
@@ -1322,13 +1371,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `walk_by_patients`
 --
 ALTER TABLE `walk_by_patients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `walk_by_patient_services`
 --
 ALTER TABLE `walk_by_patient_services`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
