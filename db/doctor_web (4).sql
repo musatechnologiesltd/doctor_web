@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2023 at 12:45 PM
+-- Generation Time: Mar 26, 2023 at 10:58 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -120,9 +120,18 @@ CREATE TABLE `doctor_appointments` (
   `patient_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `doctor_id` bigint(20) UNSIGNED NOT NULL,
   `appointment_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `patient_type` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `serial_number` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `doctor_appointments`
+--
+
+INSERT INTO `doctor_appointments` (`id`, `admin_id`, `patient_id`, `doctor_id`, `appointment_date`, `patient_type`, `serial_number`, `created_at`, `updated_at`) VALUES
+(1, 1, '220323104649', 5, '2023-03-25', NULL, '1', '2023-03-26 02:30:13', '2023-03-26 02:48:42');
 
 -- --------------------------------------------------------
 
@@ -368,7 +377,8 @@ CREATE TABLE `patients` (
 
 INSERT INTO `patients` (`id`, `admin_id`, `image`, `patient_id`, `name`, `refer_from`, `age`, `gender`, `address`, `email_address`, `phone_or_mobile_number`, `nid_number`, `nationality`, `how_did_you_come_to_know_about_this_center`, `do_you_have_earlier_experience_of_ayurveda_please_give_details`, `do_you_have_symptoms_in_past_one_weak`, `covid_test_result`, `created_at`, `updated_at`) VALUES
 (1, 1, 'public/uploads/banner1.png', '220323100307', '7HnmZIEHpo', 'bBMVeyDePV', 'ovrKDHy3mE', 'Male', 'XcahIZ6UA6', 'akny2@0yzp.com', 'e9dsRhiX2A', 'w3ZKCLW7jh', '5YfzgZP3bJ', 'YgiJg0snyL', 'iPek6e823y', 'W2Rx6MPyAA', 'Yes', '2023-03-22 04:03:07', '2023-03-22 04:03:07'),
-(2, 1, 'public/uploads/banner1.png', '220323104649', 'F6idQ3M1Bs', 'RIBDewaNUD', 'tep3rwuHoh', 'Male', '1SQeTB1pli', 'qqgjt@ilvz.com', 'tMLYSCeR3E', 'ugomc@hur7.com', 'zytyuZDZ9N', 'siUgh7729c', 'gXoiTcYWmX', 'S6TVupGu2y', 'Yes', '2023-03-22 04:46:49', '2023-03-22 04:46:49');
+(2, 1, 'public/uploads/banner1.png', '220323104649', 'F6idQ3M1Bs', 'RIBDewaNUD', 'tep3rwuHoh', 'Female', '1SQeTB1pli', 'qqgjt@ilvz.com', 'tMLYSCeR3E', 'ugomc@hur7.com', 'zytyuZDZ9N', 'siUgh7729c', 'gXoiTcYWmX', 'S6TVupGu2y', 'Yes', '2023-03-22 04:46:49', '2023-03-22 04:46:49'),
+(3, 1, 'N/A', '2603231679808261', 'ahEhAI9Fmi', 'N/A', 'UnP4RZ3DmO', 'Male', 'y3fDkCtWii', 'shdtv@mbkf.com', '8955443456', '9813538967', 'wwXiA71MIj', 'N/A', 'N/A', 'N/A', 'Yes', '2023-03-25 23:24:55', '2023-03-26 00:08:27');
 
 -- --------------------------------------------------------
 
@@ -399,6 +409,13 @@ CREATE TABLE `patient_admits` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `patient_admits`
+--
+
+INSERT INTO `patient_admits` (`id`, `admin_id`, `patient_type`, `patient_id`, `doctor_id`, `name`, `age`, `gender`, `address`, `email_address`, `phone_or_mobile_number`, `nid_number`, `nationality`, `type_of_accommodation`, `recommended_doctor_name`, `start_date`, `end_date`, `treatment_package_name`, `routine`, `created_at`, `updated_at`) VALUES
+(3, 1, 'Already Registered', '220323100307', 4, '7HnmZIEHpo', 'ovrKDHy3mE', 'Male', 'XcahIZ6UA6', 'akny2@0yzp.com', 'e9dsRhiX2A', 'w3ZKCLW7jh', '5YfzgZP3bJ', 'gfrgdf', '4', '2023-03-23', '2023-03-25', '1', 'public/uploads/3599534a-719c-4104-9793-d9c35c8500a0.jpg', '2023-03-26 00:12:27', '2023-03-26 00:12:27');
 
 -- --------------------------------------------------------
 
@@ -513,7 +530,15 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group_name`, `app_url`, 
 (208, 'therapistAdd', 'admin', 'therapist', 'admin/therapistAdd', NULL, NULL),
 (209, 'therapistView', 'admin', 'therapist', 'admin/therapistView', NULL, NULL),
 (210, 'therapistUpdate', 'admin', 'therapist', 'admin/therapistUpdate', NULL, NULL),
-(211, 'therapistDelete', 'admin', 'therapist', 'admin/therapistDelete', NULL, NULL);
+(211, 'therapistDelete', 'admin', 'therapist', 'admin/therapistDelete', NULL, NULL),
+(212, 'doctorAppointmentAdd', 'admin', 'doctorAppointment', 'admin/doctorAppointmentAdd', NULL, NULL),
+(213, 'doctorAppointmentView', 'admin', 'doctorAppointment', 'admin/doctorAppointmentView', NULL, NULL),
+(214, 'doctorAppointmentDelete', 'admin', 'doctorAppointment', 'admin/doctorAppointmentDelete', NULL, NULL),
+(215, 'doctorAppointmentUpdate', 'admin', 'doctorAppointment', 'admin/doctorAppointmentUpdate', NULL, NULL),
+(216, 'therapyAppointmentAdd', 'admin', 'therapyAppointment', 'admin/therapyAppointmentAdd', NULL, NULL),
+(217, 'therapyAppointmentView', 'admin', 'therapyAppointment', 'admin/therapyAppointmentView', NULL, NULL),
+(218, 'therapyAppointmentDelete', 'admin', 'therapyAppointment', 'admin/therapyAppointmentDelete', NULL, NULL),
+(219, 'therapyAppointmentUpdate', 'admin', 'therapyAppointment', 'admin/therapyAppointmentUpdate', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -673,7 +698,15 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (208, 1),
 (209, 1),
 (210, 1),
-(211, 1);
+(211, 1),
+(212, 1),
+(213, 1),
+(214, 1),
+(215, 1),
+(216, 1),
+(217, 1),
+(218, 1),
+(219, 1);
 
 -- --------------------------------------------------------
 
@@ -851,6 +884,7 @@ INSERT INTO `therapy_ingredients` (`id`, `name`, `created_at`, `updated_at`) VAL
 CREATE TABLE `therapy_lists` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -859,8 +893,8 @@ CREATE TABLE `therapy_lists` (
 -- Dumping data for table `therapy_lists`
 --
 
-INSERT INTO `therapy_lists` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'kajol', '2023-03-21 03:58:27', '2023-03-21 03:58:27');
+INSERT INTO `therapy_lists` (`id`, `name`, `amount`, `created_at`, `updated_at`) VALUES
+(1, 'kajol', NULL, '2023-03-21 03:58:27', '2023-03-21 03:58:27');
 
 -- --------------------------------------------------------
 
@@ -988,8 +1022,8 @@ CREATE TABLE `walk_by_patient_services` (
 --
 
 INSERT INTO `walk_by_patient_services` (`id`, `walk_by_patient_id`, `name`, `detail`, `created_at`, `updated_at`) VALUES
-(3, 2, 'Hepatitis B positive', 'l6mWu4K0tU', '2023-03-22 03:23:52', '2023-03-22 03:23:52'),
-(4, 2, 'Chronic illness', 'rDavTsO3zv', '2023-03-22 03:23:52', '2023-03-22 03:23:52');
+(5, 2, 'Hepatitis B positive', 'l6mWu4K0tU', '2023-03-26 00:08:50', '2023-03-26 00:08:50'),
+(6, 2, 'Chronic illness', 'rDavTsO3zv', '2023-03-26 00:08:51', '2023-03-26 00:08:51');
 
 --
 -- Indexes for dumped tables
@@ -1239,7 +1273,7 @@ ALTER TABLE `doctors`
 -- AUTO_INCREMENT for table `doctor_appointments`
 --
 ALTER TABLE `doctor_appointments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `doctor_consult_dates`
@@ -1275,13 +1309,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `patient_admits`
 --
 ALTER TABLE `patient_admits`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `patient_files`
@@ -1293,7 +1327,7 @@ ALTER TABLE `patient_files`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1377,7 +1411,7 @@ ALTER TABLE `walk_by_patients`
 -- AUTO_INCREMENT for table `walk_by_patient_services`
 --
 ALTER TABLE `walk_by_patient_services`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

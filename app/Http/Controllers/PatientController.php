@@ -192,7 +192,7 @@ return redirect()->route('patients.index')->with('success','Added successfully!'
 
 
 
-         if (array_key_exists("file_name", $inputAllData)){
+         if (array_key_exists("file_name", $inputAllData) || array_key_exists("file", $inputAllData)){
 
 
 

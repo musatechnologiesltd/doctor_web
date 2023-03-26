@@ -23,6 +23,8 @@ use App\Http\Controllers\TherapyIngredientController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\RewardController;
 use App\Http\Controllers\TherapistController;
+use App\Http\Controllers\DoctorAppointmentController;
+use App\Http\Controllers\TherapyAppointmentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,7 +81,18 @@ Route::group(['prefix' => 'admin'], function () {
 
     //patient_admit_route
     Route::resource('patientAdmits', PatientAdmitController::class);
+
+
     //patient_admit_route
+
+    //doctor_apoinment_controller
+    Route::resource('doctorAppointments', DoctorAppointmentController::class);
+    //doctor_apointment_controller
+
+
+    //therapy_apoinment_controller
+    Route::resource('therapyAppointments', TherapyAppointmentController::class);
+    //therapy_apoinment_controller
 
 
     //doctor_route

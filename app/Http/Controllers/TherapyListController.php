@@ -62,6 +62,7 @@ class TherapyListController extends Controller
 
              $insertTherapyList = new TherapyList();
              $insertTherapyList->name = $request->name;
+             $insertTherapyList->amount = $request->amount;
              $insertTherapyList->save();
 
              $therapyId = $insertTherapyList->id;
@@ -109,6 +110,7 @@ class TherapyListController extends Controller
 
              $insertTherapyList =TherapyList::find($id);
              $insertTherapyList->name = $request->name;
+             $insertTherapyList->amount = $request->amount;
              $insertTherapyList->save();
 
              $therapyId = $insertTherapyList->id;

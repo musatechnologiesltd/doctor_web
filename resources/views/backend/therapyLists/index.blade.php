@@ -53,7 +53,7 @@ Therapy List | {{ $ins_name }}
                                     <tr>
                                         <th class="sort" data-sort="customer_name">Sl</th>
                                         <th class="sort" data-sort="customer_name"> Name</th>
-
+                                        <th class="sort" data-sort="customer_name"> Amount</th>
                                         <th class="sort" data-sort="customer_name"> Ingredient</th>
                                         <th class="sort" data-sort="action">Action</th>
                                     </tr>
@@ -66,7 +66,7 @@ Therapy List | {{ $ins_name }}
                                         <td class="id">{{ $key+1 }}</td>
                                         <td class="customer_name">{{ $allTherapyLists->name }}</td>
 
-
+                                        <td class="customer_name">{{ $allTherapyLists->amount }}</td>
                                         <td>
                                           <?php    $allTherapyLists->therapyDetails  ?>
 
@@ -117,6 +117,12 @@ Therapy List | {{ $ins_name }}
                                                                     <div class="col-12 mb-2">
                                                                         <label for="" class="form-label">Name</label>
                                                                         <input type="text" value="{{ $allTherapyLists->name }}" name ="name" class="form-control" id="" placeholder="Name" required>
+                                                                    </div>
+
+
+                                                                    <div class="col-12 mb-2">
+                                                                        <label for="" class="form-label">Amount</label>
+                                                                        <input type="text" value="{{ $allTherapyLists->amount }}" name ="amount" class="form-control" id="" placeholder="Amount" required>
                                                                     </div>
 
 
@@ -247,6 +253,11 @@ Therapy List | {{ $ins_name }}
                         <div class="col-12 mb-2">
                             <label for="" class="form-label">Name</label>
                             <input type="text" name ="name" class="form-control" id="" placeholder="Name" required>
+                        </div>
+
+                        <div class="col-12 mb-2">
+                            <label for="" class="form-label">Amount</label>
+                            <input type="text"  name ="amount" class="form-control" id="" placeholder="Amount" required>
                         </div>
 
                         <div class="col-12">
