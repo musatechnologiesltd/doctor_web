@@ -108,7 +108,9 @@ class DoctorAppointmentController extends Controller
         ]);
 
 
-       $getSerialValue =  DoctorAppointment::where('appointment_date',$request->appointment_date)->value('serial_number');
+       $getSerialValue =  DoctorAppointment::where('appointment_date',$request->appointment_date)
+       ->where('doctor_id',$request->doctor_id)
+       ->value('serial_number');
 
        if(empty($getSerialValue)){
 

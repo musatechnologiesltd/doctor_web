@@ -25,6 +25,8 @@ use App\Http\Controllers\RewardController;
 use App\Http\Controllers\TherapistController;
 use App\Http\Controllers\DoctorAppointmentController;
 use App\Http\Controllers\TherapyAppointmentController;
+use App\Http\Controllers\DoctorWaitingListController;
+use App\Http\Controllers\PatientPrecriptionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,6 +58,26 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+    //waiting_list_controller
+
+    Route::controller(DoctorWaitingListController::class)->group(function () {
+
+        Route::get('/doctorWaitingList', 'doctorWaitingList')->name('DoctorWaitingList');
+        Route::get('/addPatientHistory/{id}', 'addPatientHistory')->name('addPatientHistory');
+        Route::get('/addPatientPrescriptionInfo/{id}', 'addPatientPrescriptionInfo')->name('addPatientPrescriptionInfo');
+        Route::post('/postPatientHistory', 'postPatientHistory')->name('postPatientHistory');
+        Route::post('/postPatientPrescriptionInfo', 'postPatientPrescriptionInfo')->name('postPatientPrescriptionInfo');
+    });
+    //end_waiting_list_controller
+
+
+     //PatientPrecription_list_controller
+     Route::resource('patientPrecriptions', PatientPrecriptionController::class);
+    //PatientPrecription_list_controller
+
+
+
 
 
     //walk_by_patient_route

@@ -65,6 +65,12 @@ class Admin extends Authenticatable
         return $this->hasMany('App\Models\DoctorAppointment');
     }
 
+
+    public function patientHistories()
+    {
+        return $this->hasMany('App\Models\PatientHistory');
+    }
+
     public function therapyAppointments()
     {
         return $this->hasMany('App\Models\TherapyAppointment');

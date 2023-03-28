@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2023 at 10:58 AM
+-- Generation Time: Mar 28, 2023 at 11:34 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -51,11 +51,7 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `staff_id`, `therapist_id`, `name`, `position`, `email`, `phone`, `username`, `email_verified_at`, `password`, `image`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, NULL, NULL, 'superadmin', NULL, 'superadmin@gmail.com', NULL, 'superadmin', NULL, '$2y$10$grm3z53L5a25UmMn2IN3k.rCggUR1xCXYKE6eO6yg6M6fN4RAQC8C', 'user-photo/1665758734.png', '1', NULL, '2021-03-24 05:29:53', '2023-03-05 00:11:11'),
-(2, NULL, NULL, 'admin', NULL, 'admin@gmail.com', '666', 'admin', NULL, '$2y$10$E.AdnAg2QNhGUkTxEGNlSOpiczjg9s4PhCd/zKR/PKLTY.rPbo4g2', NULL, '1', NULL, '2021-03-24 06:14:00', '2022-10-28 05:15:49'),
-(3, NULL, NULL, 'waiter', NULL, 'w@gmail.com', '12123', 'waiter', NULL, '$2y$10$f/vpvB5T88oGrPsrylXk2.khVIDr.P3K2BYCchZRVRrMWUupClstm', NULL, '1', NULL, '2023-01-06 23:51:06', '2023-01-06 23:51:06'),
-(4, NULL, NULL, 'Kamruzzaman kajol', NULL, 'kk@gmail.com', '01646735100', 'kamruzzaman-kajol', NULL, '$2y$10$/uUyrXAyK6IRT31zs5ybzOpzRHvmuBj0RacLR3C54EdADtJS4z2lm', NULL, '1', NULL, '2023-03-04 23:53:56', '2023-03-04 23:53:56'),
-(5, 1, NULL, 'erh756KNy52', NULL, '7RpgnjW8eq2', 'Y6MLQhKARY2', 'erh756kny5', NULL, '$2y$10$/KeNN5vbGcTXzysgAC.j.u2qEA.oJy7T/usACW7AGosqsYHan.IgO', NULL, '1', NULL, '2023-03-21 23:52:40', '2023-03-21 23:52:57'),
-(6, 1, NULL, 'rI7LvUz0mV', NULL, 'V3JdPzss3H', '6N7YChjWAh', 'ri7lvuz0mv', NULL, '$2y$10$IBsfdRw16E46hCzMhVMwcuFWj2nkFq3VuqJyS06txXgR5vVs7sRey', NULL, '1', NULL, '2023-03-22 00:16:19', '2023-03-22 00:16:19');
+(7, NULL, NULL, 'doctor', 'doctor', 'doctor@gmail.com', '01646735100', 'doctor', NULL, '$2y$10$N/0gxFIDsXihOrr3rjmy.OySYLgwxzyPlnSOONXxKBlbYBuhZK6jy', NULL, '1', NULL, '2023-03-28 00:12:40', '2023-03-28 00:12:40');
 
 -- --------------------------------------------------------
 
@@ -122,6 +118,7 @@ CREATE TABLE `doctor_appointments` (
   `appointment_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `patient_type` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `serial_number` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(110) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -130,8 +127,9 @@ CREATE TABLE `doctor_appointments` (
 -- Dumping data for table `doctor_appointments`
 --
 
-INSERT INTO `doctor_appointments` (`id`, `admin_id`, `patient_id`, `doctor_id`, `appointment_date`, `patient_type`, `serial_number`, `created_at`, `updated_at`) VALUES
-(1, 1, '220323104649', 5, '2023-03-25', NULL, '1', '2023-03-26 02:30:13', '2023-03-26 02:48:42');
+INSERT INTO `doctor_appointments` (`id`, `admin_id`, `patient_id`, `doctor_id`, `appointment_date`, `patient_type`, `serial_number`, `status`, `created_at`, `updated_at`) VALUES
+(3, 1, '2603231679808261', 5, '2023-03-28', 'Patient', '1', NULL, '2023-03-28 00:09:29', '2023-03-28 00:09:29'),
+(4, 1, '220323104649', 5, '2023-03-28', 'Patient', '2', NULL, '2023-03-28 00:09:54', '2023-03-28 00:09:54');
 
 -- --------------------------------------------------------
 
@@ -292,7 +290,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (64, '2023_03_19_093345_create_staff_table', 19),
 (65, '2023_03_19_093434_create_rewards_table', 19),
 (66, '2023_03_19_093542_create_therapists_table', 19),
-(67, '2023_03_19_112836_create_therapy_details_table', 19);
+(67, '2023_03_19_112836_create_therapy_details_table', 19),
+(72, '2023_03_28_073851_create_patient_histories_table', 20),
+(73, '2023_03_28_074103_create_patient_therapies_table', 20),
+(74, '2023_03_28_074256_create_patient_herbs_table', 20),
+(75, '2023_03_28_074335_create_patient_medical_supplements_table', 20);
 
 -- --------------------------------------------------------
 
@@ -325,11 +327,7 @@ CREATE TABLE `model_has_roles` (
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\Models\\Admin', 1),
 (1, 'App\\User', 1),
-(2, 'App\\Models\\Admin', 6),
-(3, 'App\\Models\\Admin', 2),
-(3, 'App\\Models\\Admin', 3),
-(3, 'App\\Models\\Admin', 4),
-(3, 'App\\Models\\Admin', 5);
+(3, 'App\\Models\\Admin', 7);
 
 -- --------------------------------------------------------
 
@@ -443,6 +441,121 @@ INSERT INTO `patient_files` (`id`, `patient_id`, `name`, `file`, `created_at`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `patient_herbs`
+--
+
+CREATE TABLE `patient_herbs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `doctor_id` bigint(20) UNSIGNED NOT NULL,
+  `doctor_appointment_id` bigint(20) UNSIGNED NOT NULL,
+  `patient_history_id` bigint(20) UNSIGNED NOT NULL,
+  `patient_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `part_of_the_day` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `how_many_dose` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `main_time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient_histories`
+--
+
+CREATE TABLE `patient_histories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `admin_id` bigint(20) UNSIGNED NOT NULL,
+  `doctor_id` bigint(20) UNSIGNED NOT NULL,
+  `doctor_appointment_id` bigint(20) UNSIGNED NOT NULL,
+  `patient_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pradhan_vedana` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vedana_vrutanta` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `chikitsa_vrutanta` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stri_evam_prasooti_vrutant` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `poorva_vedana_vrutant` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `anuvanshika_vritanta` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pratyaksh_pramanam` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roga_preeksha_srotas_pareeksha` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rasavaha_srotas` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `raktavaha_srotas` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mamsavaha_srotas` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `medovaha_srotas` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `asthivaha_srotas` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `majjavaha_srotas` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shukravaha_srotas` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rogi_pareeksha` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nadi` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dosha` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dushya` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shwas` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tap_temp` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kala` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bhara_wt` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `agni` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `raktchap_bp` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prakruti` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mala` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vaya` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mootra` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `satmya` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kshudha` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `satva` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nidra` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ahara` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vyasan` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roga_mrag` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rago_sthana` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sadhyasadhyata` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pathya` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `yoga_chikitsa` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `paramarsh` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `history_file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lmp` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient_medical_supplements`
+--
+
+CREATE TABLE `patient_medical_supplements` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `doctor_id` bigint(20) UNSIGNED NOT NULL,
+  `doctor_appointment_id` bigint(20) UNSIGNED NOT NULL,
+  `patient_history_id` bigint(20) UNSIGNED NOT NULL,
+  `patient_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient_therapies`
+--
+
+CREATE TABLE `patient_therapies` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `doctor_id` bigint(20) UNSIGNED NOT NULL,
+  `doctor_appointment_id` bigint(20) UNSIGNED NOT NULL,
+  `patient_history_id` bigint(20) UNSIGNED NOT NULL,
+  `patient_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `permissions`
 --
 
@@ -538,7 +651,15 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group_name`, `app_url`, 
 (216, 'therapyAppointmentAdd', 'admin', 'therapyAppointment', 'admin/therapyAppointmentAdd', NULL, NULL),
 (217, 'therapyAppointmentView', 'admin', 'therapyAppointment', 'admin/therapyAppointmentView', NULL, NULL),
 (218, 'therapyAppointmentDelete', 'admin', 'therapyAppointment', 'admin/therapyAppointmentDelete', NULL, NULL),
-(219, 'therapyAppointmentUpdate', 'admin', 'therapyAppointment', 'admin/therapyAppointmentUpdate', NULL, NULL);
+(219, 'therapyAppointmentUpdate', 'admin', 'therapyAppointment', 'admin/therapyAppointmentUpdate', NULL, NULL),
+(220, 'doctorWaitingListAdd', 'admin', 'doctorWaitingList', 'admin/doctorWaitingListAdd', NULL, NULL),
+(221, 'doctorWaitingListView', 'admin', 'doctorWaitingList', 'admin/doctorWaitingListView', NULL, NULL),
+(222, 'doctorWaitingListDelete', 'admin', 'doctorWaitingList', 'admin/doctorWaitingListDelete', NULL, NULL),
+(223, 'doctorWaitingListUpdate', 'admin', 'doctorWaitingList', 'admin/doctorWaitingListUpdate', NULL, NULL),
+(224, 'patientPrescriptionListAdd', 'admin', 'patientPrescriptionList', 'admin/patientPrescriptionListAdd', NULL, NULL),
+(225, 'patientPrescriptionListView', 'admin', 'patientPrescriptionList', 'admin/patientPrescriptionListView', NULL, NULL),
+(226, 'patientPrescriptionListDelete', 'admin', 'patientPrescriptionList', 'admin/patientPrescriptionListDelete', NULL, NULL),
+(227, 'patientPrescriptionListUpdate', 'admin', 'patientPrescriptionList', 'admin/patientPrescriptionListUpdate', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -603,7 +724,7 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
 (1, 'superadmin', 'admin', '2021-03-24 02:04:14', '2021-03-24 02:04:14'),
 (2, 'therapist', 'admin', '2021-03-24 02:04:14', '2023-03-21 05:11:13'),
-(3, 'staff', 'admin', '2021-03-24 02:04:14', '2023-03-21 05:10:06');
+(3, 'doctor', 'admin', '2021-03-24 02:04:14', '2023-03-28 00:11:21');
 
 -- --------------------------------------------------------
 
@@ -706,7 +827,15 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (216, 1),
 (217, 1),
 (218, 1),
-(219, 1);
+(219, 1),
+(220, 1),
+(221, 1),
+(222, 1),
+(223, 1),
+(224, 1),
+(225, 1),
+(226, 1),
+(227, 1);
 
 -- --------------------------------------------------------
 
@@ -1132,6 +1261,42 @@ ALTER TABLE `patient_files`
   ADD KEY `patient_files_patient_id_foreign` (`patient_id`);
 
 --
+-- Indexes for table `patient_herbs`
+--
+ALTER TABLE `patient_herbs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `patient_herbs_doctor_id_foreign` (`doctor_id`),
+  ADD KEY `patient_herbs_doctor_appointment_id_foreign` (`doctor_appointment_id`),
+  ADD KEY `patient_herbs_patient_history_id_foreign` (`patient_history_id`);
+
+--
+-- Indexes for table `patient_histories`
+--
+ALTER TABLE `patient_histories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `patient_histories_admin_id_foreign` (`admin_id`),
+  ADD KEY `patient_histories_doctor_id_foreign` (`doctor_id`),
+  ADD KEY `patient_histories_doctor_appointment_id_foreign` (`doctor_appointment_id`);
+
+--
+-- Indexes for table `patient_medical_supplements`
+--
+ALTER TABLE `patient_medical_supplements`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `patient_medical_supplements_doctor_id_foreign` (`doctor_id`),
+  ADD KEY `patient_medical_supplements_doctor_appointment_id_foreign` (`doctor_appointment_id`),
+  ADD KEY `patient_medical_supplements_patient_history_id_foreign` (`patient_history_id`);
+
+--
+-- Indexes for table `patient_therapies`
+--
+ALTER TABLE `patient_therapies`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `patient_therapies_doctor_id_foreign` (`doctor_id`),
+  ADD KEY `patient_therapies_doctor_appointment_id_foreign` (`doctor_appointment_id`),
+  ADD KEY `patient_therapies_patient_history_id_foreign` (`patient_history_id`);
+
+--
 -- Indexes for table `permissions`
 --
 ALTER TABLE `permissions`
@@ -1255,7 +1420,7 @@ ALTER TABLE `walk_by_patient_services`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `diet_charts`
@@ -1273,7 +1438,7 @@ ALTER TABLE `doctors`
 -- AUTO_INCREMENT for table `doctor_appointments`
 --
 ALTER TABLE `doctor_appointments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `doctor_consult_dates`
@@ -1303,7 +1468,7 @@ ALTER TABLE `medicines`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `patients`
@@ -1324,10 +1489,34 @@ ALTER TABLE `patient_files`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `patient_herbs`
+--
+ALTER TABLE `patient_herbs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `patient_histories`
+--
+ALTER TABLE `patient_histories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `patient_medical_supplements`
+--
+ALTER TABLE `patient_medical_supplements`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `patient_therapies`
+--
+ALTER TABLE `patient_therapies`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=228;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1465,6 +1654,38 @@ ALTER TABLE `patient_admits`
 --
 ALTER TABLE `patient_files`
   ADD CONSTRAINT `patient_files_patient_id_foreign` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`);
+
+--
+-- Constraints for table `patient_herbs`
+--
+ALTER TABLE `patient_herbs`
+  ADD CONSTRAINT `patient_herbs_doctor_appointment_id_foreign` FOREIGN KEY (`doctor_appointment_id`) REFERENCES `doctor_appointments` (`id`),
+  ADD CONSTRAINT `patient_herbs_doctor_id_foreign` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`id`),
+  ADD CONSTRAINT `patient_herbs_patient_history_id_foreign` FOREIGN KEY (`patient_history_id`) REFERENCES `patient_histories` (`id`);
+
+--
+-- Constraints for table `patient_histories`
+--
+ALTER TABLE `patient_histories`
+  ADD CONSTRAINT `patient_histories_admin_id_foreign` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`),
+  ADD CONSTRAINT `patient_histories_doctor_appointment_id_foreign` FOREIGN KEY (`doctor_appointment_id`) REFERENCES `doctor_appointments` (`id`),
+  ADD CONSTRAINT `patient_histories_doctor_id_foreign` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`id`);
+
+--
+-- Constraints for table `patient_medical_supplements`
+--
+ALTER TABLE `patient_medical_supplements`
+  ADD CONSTRAINT `patient_medical_supplements_doctor_appointment_id_foreign` FOREIGN KEY (`doctor_appointment_id`) REFERENCES `doctor_appointments` (`id`),
+  ADD CONSTRAINT `patient_medical_supplements_doctor_id_foreign` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`id`),
+  ADD CONSTRAINT `patient_medical_supplements_patient_history_id_foreign` FOREIGN KEY (`patient_history_id`) REFERENCES `patient_histories` (`id`);
+
+--
+-- Constraints for table `patient_therapies`
+--
+ALTER TABLE `patient_therapies`
+  ADD CONSTRAINT `patient_therapies_doctor_appointment_id_foreign` FOREIGN KEY (`doctor_appointment_id`) REFERENCES `doctor_appointments` (`id`),
+  ADD CONSTRAINT `patient_therapies_doctor_id_foreign` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`id`),
+  ADD CONSTRAINT `patient_therapies_patient_history_id_foreign` FOREIGN KEY (`patient_history_id`) REFERENCES `patient_histories` (`id`);
 
 --
 -- Constraints for table `staff`

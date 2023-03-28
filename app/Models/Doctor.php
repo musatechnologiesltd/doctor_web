@@ -33,4 +33,26 @@ class Doctor extends Model
     {
         return $this->hasMany('App\Models\DoctorConsultDate');
     }
+
+    public function patientHistories()
+    {
+        return $this->hasMany('App\Models\PatientHistory');
+    }
+
+    public function patientHerbs()
+    {
+        return $this->hasMany('App\Models\PatientHerb');
+    }
+
+
+    public function patientTherapies()
+    {
+        return $this->hasMany('App\Models\PatientTherapy');
+    }
+
+
+    public function patientMedicalSupplements()
+    {
+        return $this->hasMany('App\Models\PatientMedicalSupplement');
+    }
 }

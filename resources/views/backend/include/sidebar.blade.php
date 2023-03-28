@@ -218,6 +218,33 @@
                 </li>
 
                 <li class="menu-title"><span data-key="t-menu">Doctor Section</span></li>
+
+                @if (Route::is('patientPrecriptions.index') ||  Route::is('addPatientPrescriptionInfo') || Route::is('addPatientHistory') || Route::is('DoctorWaitingList') || Route::is('patientPrecriptions.show'))
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#doctorWaiting" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarTables">
+                        <i class="ri-hail-line"></i> <span data-key="t-tables">Doctor Attend</span>
+                    </a>
+                    <div class="collapse menu-dropdown show" id="doctorWaiting">
+                        <ul class="nav nav-sm flex-column">
+
+                            @if ($usr->can('doctorWaitingListAdd') ||  $usr->can('doctorWaitingListView') ||  $usr->can('doctorWaitingListDelete') ||  $usr->can('doctorWaitingListUpdate'))
+                            <li class="nav-item">
+                                <a href="{{ route('DoctorWaitingList') }}" class="nav-link {{ Route::is('addPatientPrescriptionInfo') || Route::is('DoctorWaitingList') || Route::is('addPatientHistory') ? 'active' : '' }}" data-key="t-basic-tables">Doctor Waiting List</a>
+                            </li>
+@endif
+
+@if ($usr->can('patientPrescriptionListAdd') ||  $usr->can('patientPrescriptionListView') ||  $usr->can('patientPrescriptionListDelete') ||  $usr->can('patientPrescriptionListUpdate'))
+                            <li class="nav-item">
+                                <a href="{{ route('patientPrecriptions.index') }}" class="nav-link {{ Route::is('patientPrecriptions.index') || Route::is('patientPrecriptions.show') ? 'active' : '' }}" data-key="t-grid-js">Patient Prescription List</a>
+                            </li>
+@endif
+
+
+                        </ul>
+                    </div>
+                </li>
+                @else
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#doctorWaiting" data-bs-toggle="collapse" role="button"
                        aria-expanded="false" aria-controls="sidebarTables">
@@ -225,15 +252,25 @@
                     </a>
                     <div class="collapse menu-dropdown" id="doctorWaiting">
                         <ul class="nav nav-sm flex-column">
+
+                            @if ($usr->can('doctorWaitingListAdd') ||  $usr->can('doctorWaitingListView') ||  $usr->can('doctorWaitingListDelete') ||  $usr->can('doctorWaitingListUpdate'))
                             <li class="nav-item">
-                                <a href="doctor_waiting_list.php" class="nav-link" data-key="t-basic-tables">Doctor Waiting List</a>
+                                <a href="{{ route('DoctorWaitingList') }}" class="nav-link {{ Route::is('addPatientPrescriptionInfo') || Route::is('DoctorWaitingList') || Route::is('addPatientHistory') ? 'active' : '' }}" data-key="t-basic-tables">Doctor Waiting List</a>
                             </li>
+@endif
+
+@if ($usr->can('patientPrescriptionListAdd') ||  $usr->can('patientPrescriptionListView') ||  $usr->can('patientPrescriptionListDelete') ||  $usr->can('patientPrescriptionListUpdate'))
                             <li class="nav-item">
-                                <a href="doctor_prescription_list.php" class="nav-link" data-key="t-grid-js">Patient Prescription List</a>
+                                <a href="{{ route('patientPrecriptions.index') }}" class="nav-link {{ Route::is('patientPrecriptions.index') || Route::is('patientPrecriptions.show') ? 'active' : '' }}" data-key="t-grid-js">Patient Prescription List</a>
                             </li>
+@endif
+
+
                         </ul>
                     </div>
                 </li>
+
+                @endif
 
                 @if ($usr->can('doctorAdd') || $usr->can('doctorView') ||  $usr->can('doctorDelete') ||  $usr->can('doctorUpdate'))
                 <li class="nav-item">

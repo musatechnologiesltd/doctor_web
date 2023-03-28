@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('doctor_appointments', function (Blueprint $table) {
+        Schema::create('patient_medical_supplements', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('admin_id')->unsigned();
-            $table->foreign('admin_id')->references('id')->on('admins');
-            $table->string('patient_id');
             $table->bigInteger('doctor_id')->unsigned();
             $table->foreign('doctor_id')->references('id')->on('doctors');
-            $table->string('appointment_date');
-            $table->string('patient_type');
-            $table->string('serial_number');
-            $table->string('status',100)->nullable();
+            $table->bigInteger('doctor_appointment_id')->unsigned();
+            $table->foreign('doctor_appointment_id')->references('id')->on('doctor_appointments');
+            $table->bigInteger('patient_history_id')->unsigned();
+            $table->foreign('patient_history_id')->references('id')->on('patient_histories');
+            $table->string('patient_id');
+            $table->string('name');
+            $table->string('quantity');
             $table->timestamps();
         });
     }
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doctor_appointments');
+        Schema::dropIfExists('patient_medical_supplements');
     }
 };
