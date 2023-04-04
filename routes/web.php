@@ -27,6 +27,9 @@ use App\Http\Controllers\DoctorAppointmentController;
 use App\Http\Controllers\TherapyAppointmentController;
 use App\Http\Controllers\DoctorWaitingListController;
 use App\Http\Controllers\PatientPrecriptionController;
+use App\Http\Controllers\WalkByPatientTherapyController;
+use App\Http\Controllers\BillingController;
+use App\Http\Controllers\RevisedBillingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,6 +75,35 @@ Route::group(['prefix' => 'admin'], function () {
     //end_waiting_list_controller
 
 
+
+       //revisedBilling_controller
+       Route::resource('revisedBillings', RevisedBillingController::class);
+       //revisedBilling_controller
+
+
+        //billing_controller
+        Route::resource('billings', BillingController::class);
+
+        Route::controller(BillingController::class)->group(function () {
+
+            Route::post('/paymentMoney', 'paymentMoney')->name('paymentMoney');
+            Route::get('/printInvoice/{id}', 'printInvoice')->name('printInvoice');
+            Route::get('/moveToReversed/{id}', 'moveToReversed')->name('moveToReversed');
+        });
+        //billing_controller
+
+         //walkByPatientTherapyController
+         Route::resource('walkByPatientTherapy', WalkByPatientTherapyController::class);
+
+         Route::controller(WalkByPatientTherapyController::class)->group(function () {
+
+            Route::get('/walkByPatientTherapyMain', 'walkByPatientTherapyMain')->name('walkByPatientTherapyMain');
+        });
+
+
+         //WalkByPatientTherapyController
+
+
      //PatientPrecription_list_controller
      Route::resource('patientPrecriptions', PatientPrecriptionController::class);
     //PatientPrecription_list_controller
@@ -114,6 +146,13 @@ Route::group(['prefix' => 'admin'], function () {
 
     //therapy_apoinment_controller
     Route::resource('therapyAppointments', TherapyAppointmentController::class);
+
+    Route::controller(TherapyAppointmentController::class)->group(function () {
+        Route::get('/getTherapyAppointmentDetail', 'getTherapyAppointmentDetail')->name('getTherapyAppointmentDetail');
+        Route::get('/getTherapyListDetail', 'getTherapyListDetail')->name('getTherapyListDetail');
+
+    });
+
     //therapy_apoinment_controller
 
 

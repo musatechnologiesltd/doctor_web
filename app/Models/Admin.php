@@ -54,6 +54,12 @@ class Admin extends Authenticatable
     }
 
 
+    public function bills()
+    {
+        return $this->hasMany('App\Models\Bill');
+    }
+
+
     public function patientAdmits()
     {
         return $this->hasMany('App\Models\PatientAdmit');
@@ -86,6 +92,12 @@ class Admin extends Authenticatable
     public function therapists()
     {
         return $this->hasMany('App\Models\Therapist');
+    }
+
+
+    public function therapyAppointmentDateAndTimes()
+    {
+        return $this->hasMany('App\Models\TherapyAppointmentDateAndTime');
     }
 
 

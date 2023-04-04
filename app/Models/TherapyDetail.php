@@ -21,6 +21,6 @@ class TherapyDetail extends Model
 
     public function therapyIngredients()
     {
-        return $this->belongsToMany('App\Models\TherapyIngredient')->withTimestamps();
+        return $this->belongsTo('App\Models\TherapyIngredient')->withTimestamps();
     }
 }

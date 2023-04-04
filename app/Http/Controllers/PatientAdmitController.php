@@ -303,4 +303,7 @@ return redirect()->route('patientAdmits.index')->with('success','Added successfu
         PatientAdmit::destroy($id);
         return redirect()->route('patientAdmits.index')->with('error','Deleted successfully!');
     }
+
+
+    
 }
