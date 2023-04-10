@@ -15,6 +15,6 @@ class DoctorConsultDate extends Model
 
     public function doctor()
     {
-        return $this->belongsTo('App\Model\Doctor');
+        return $this->belongsTo('App\Models\Doctor');
     }
 }

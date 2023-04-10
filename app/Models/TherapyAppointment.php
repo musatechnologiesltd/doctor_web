@@ -15,18 +15,18 @@ class TherapyAppointment extends Model
 
     public function admin()
     {
-        return $this->belongsTo('App\Model\Admin');
+        return $this->belongsTo('App\Models\Admin');
     }
 
 
 
-    public function therapy_appointment_date_and_times()
+    public function therapyAppointmentDateAndTimes()
     {
-        return $this->hasMany('App\Model\TherapyAppointmentDateAndTime');
+        return $this->hasMany('App\Models\TherapyAppointmentDateAndTime');
     }
 
-    public function therapy_appointment_details()
+    public function therapyAppointmentDetails()
     {
-        return $this->hasMany('App\Model\TherapyAppointmentDetail');
+        return $this->hasMany('App\Models\TherapyAppointmentDetail');
     }
 }

@@ -15,6 +15,6 @@ class PatientFile extends Model
 
     public function patient()
     {
-        return $this->belongsTo('App\Model\Patient');
+        return $this->belongsTo('App\Models\Patient');
     }
 }

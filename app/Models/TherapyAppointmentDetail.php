@@ -13,8 +13,8 @@ class TherapyAppointmentDetail extends Model
         'therapy_appointment_id', 'therapy_name','name','amount'
     ];
 
-    public function therapy_appointment()
+    public function therapyAppointment()
     {
-        return $this->belongsTo('App\Model\TherapyAppointment');
+        return $this->belongsTo('App\Models\TherapyAppointment');
     }
 }

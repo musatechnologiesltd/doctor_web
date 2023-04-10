@@ -10,13 +10,13 @@ class TherapyList extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'name','amount'
     ];
 
 
-    public function therapy_details()
+    public function therapyDetails()
     {
-        return $this->hasMany('App\Model\TherapyDetail');
+        return $this->hasMany('App\Models\TherapyDetail');
     }
 
 

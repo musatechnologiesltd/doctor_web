@@ -14,13 +14,13 @@ class TherapyDetail extends Model
     ];
 
 
-    public function therapy_list()
+    public function therapyList()
     {
-        return $this->belongsTo('App\Model\TherapyList');
+        return $this->belongsTo('App\Models\TherapyList');
     }
 
-    public function therapy_ingredients()
+    public function therapyIngredients()
     {
-        return $this->belongsToMany('App\Model\TherapyIngredient')->withTimestamps();
+        return $this->belongsTo('App\Models\TherapyIngredient')->withTimestamps();
     }
 }

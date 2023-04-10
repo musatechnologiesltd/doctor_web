@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('therapy_lists', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('amount');
             $table->timestamps();
         });
     }

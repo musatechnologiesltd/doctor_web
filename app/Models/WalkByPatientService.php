@@ -13,8 +13,8 @@ class WalkByPatientService extends Model
         'walk_by_patient_id', 'name', 'detail'
     ];
 
-    public function walk_by_patient()
+    public function walkByPatient()
     {
-        return $this->belongsTo('App\Model\WalkByPatient');
+        return $this->belongsTo('App\Models\WalkByPatient');
     }
 }

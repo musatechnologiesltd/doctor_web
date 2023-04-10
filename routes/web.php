@@ -14,6 +14,22 @@ use App\Http\Controllers\Admin\ForgetPasswordController;
 use App\Http\Controllers\WalkByPatientController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\PatientAdmitController;
+use App\Http\Controllers\DietChartController;
+use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\HealthSupplementController;
+use App\Http\Controllers\TherapyListController;
+use App\Http\Controllers\TherapyIngredientController;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\RewardController;
+use App\Http\Controllers\TherapistController;
+use App\Http\Controllers\DoctorAppointmentController;
+use App\Http\Controllers\TherapyAppointmentController;
+use App\Http\Controllers\DoctorWaitingListController;
+use App\Http\Controllers\PatientPrecriptionController;
+use App\Http\Controllers\WalkByPatientTherapyController;
+use App\Http\Controllers\BillingController;
+use App\Http\Controllers\RevisedBillingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,43 +62,101 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
+    //waiting_list_controller
+
+    Route::controller(DoctorWaitingListController::class)->group(function () {
+
+        Route::get('/doctorWaitingList', 'doctorWaitingList')->name('DoctorWaitingList');
+        Route::get('/addPatientHistory/{id}', 'addPatientHistory')->name('addPatientHistory');
+        Route::get('/addPatientPrescriptionInfo/{id}', 'addPatientPrescriptionInfo')->name('addPatientPrescriptionInfo');
+        Route::post('/postPatientHistory', 'postPatientHistory')->name('postPatientHistory');
+        Route::post('/postPatientPrescriptionInfo', 'postPatientPrescriptionInfo')->name('postPatientPrescriptionInfo');
+    });
+    //end_waiting_list_controller
+
+
+
+       //revisedBilling_controller
+       Route::resource('revisedBillings', RevisedBillingController::class);
+       //revisedBilling_controller
+
+
+        //billing_controller
+        Route::resource('billings', BillingController::class);
+
+        Route::controller(BillingController::class)->group(function () {
+             Route::get('/medicineList/{id}', 'medicineList')->name('medicineList');
+             Route::get('/therapyListFromHistory/{id}', 'therapyListFromHistory')->name('therapyListFromHistory');
+             
+             
+            Route::post('/paymentMoney', 'paymentMoney')->name('paymentMoney');
+            Route::get('/printInvoice/{id}', 'printInvoice')->name('printInvoice');
+            Route::get('/moveToReversed/{id}', 'moveToReversed')->name('moveToReversed');
+        });
+        //billing_controller
+
+         //walkByPatientTherapyController
+         Route::resource('walkByPatientTherapy', WalkByPatientTherapyController::class);
+
+         Route::controller(WalkByPatientTherapyController::class)->group(function () {
+
+            Route::get('/walkByPatientTherapyMain', 'walkByPatientTherapyMain')->name('walkByPatientTherapyMain');
+        });
+
+
+         //WalkByPatientTherapyController
+
+
+     //PatientPrecription_list_controller
+     Route::resource('patientPrecriptions', PatientPrecriptionController::class);
+    //PatientPrecription_list_controller
+
+
+
+
 
     //walk_by_patient_route
-    Route::controller(WalkByPatientController::class)->group(function () {
-        Route::get('/walkByPatientCreate', 'create')->name('walkByPatientCreate');
-        Route::get('/walkByPatientList', 'index')->name('walkByPatientList');
-        Route::post('/walkByPatientStore', 'store')->name('walkByPatientStore');
-        Route::post('/walkByPatientUpdate', 'update')->name('walkByPatientUpdate');
-        Route::get('/walkByPatientEdit/{id}', 'edit')->name('walkByPatientEdit');
-        Route::get('/walkByPatientView/{id}', 'view')->name('walkByPatientView');
-    });
+      Route::resource('walkByPatients', WalkByPatientController::class);
 
+      Route::controller(WalkByPatientController::class)->group(function () {
+
+        Route::get('/transferToPatientList/{id}', 'transferToPatientList')->name('transferToPatientList');
+    });
     //end_walk_by_patient_route
 
     //patient_route
-    Route::controller(PatientController::class)->group(function () {
-        Route::get('/patientCreate', 'create')->name('patientCreate');
-        Route::get('/patientList', 'index')->name('patientList');
-        Route::post('/patientStore', 'store')->name('patientStore');
-        Route::post('/patientUpdate', 'update')->name('patientUpdate');
-        Route::get('/patientEdit/{id}', 'edit')->name('patientEdit');
-        Route::get('/patientView/{id}', 'view')->name('patientView');
-    });
+     Route::resource('patients', PatientController::class);
 
+     Route::controller(PatientController::class)->group(function () {
+
+        Route::post('/patientFileUpdate', 'patientFileUpdate')->name('patientFileUpdate');
+
+        Route::delete('patientFileDelete/{id}','patientFileDelete')->name('patientFileDelete');
+    });
     //patient_route
 
 
     //patient_admit_route
-    Route::controller(PatientAdmitController::class)->group(function () {
-        Route::get('/patientAdmitCreate', 'create')->name('patientAdmitCreate');
-        Route::get('/patientAdmitList', 'index')->name('patientAdmitList');
-        Route::post('/patientAdmitStore', 'store')->name('patientAdmitStore');
-        Route::post('/patientAdmitUpdate', 'update')->name('patientAdmitUpdate');
-        Route::get('/patientAdmitEdit/{id}', 'edit')->name('patientAdmitEdit');
-        Route::get('/patientAdmitView/{id}', 'view')->name('patientAdmitView');
-    });
+    Route::resource('patientAdmits', PatientAdmitController::class);
+
 
     //patient_admit_route
+
+    //doctor_apoinment_controller
+    Route::resource('doctorAppointments', DoctorAppointmentController::class);
+    //doctor_apointment_controller
+
+
+    //therapy_apoinment_controller
+    Route::resource('therapyAppointments', TherapyAppointmentController::class);
+
+    Route::controller(TherapyAppointmentController::class)->group(function () {
+        Route::get('/getTherapyAppointmentDetail', 'getTherapyAppointmentDetail')->name('getTherapyAppointmentDetail');
+        Route::get('/getTherapyListDetail', 'getTherapyListDetail')->name('getTherapyListDetail');
+
+    });
+
+    //therapy_apoinment_controller
 
 
     //doctor_route
@@ -93,14 +167,34 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/doctorUpdate', 'update')->name('doctorUpdate');
         Route::get('/doctorEdit/{id}', 'edit')->name('doctorEdit');
         Route::get('/doctorView/{id}', 'view')->name('doctorView');
+        Route::delete('doctorDelete/{id}','delete')->name('doctorDelete');
     });
 
     //doctor_route
 
+    //Prescription Equipment  Route
+
+    Route::resource('dietCharts', DietChartController::class);
+    Route::resource('medicineLists', MedicineController::class);
+    Route::resource('healthSupplements', HealthSupplementController::class);
+    Route::resource('therapyLists', TherapyListController::class);
+    Route::resource('therapyIngredients', TherapyIngredientController::class);
+
+// Prescription Equipment  Route
 
 
+//staff route add
+Route::resource('staff',StaffController::class);
+//end staff route
 
 
+//reward route start
+Route::resource('reward',RewardController::class);
+//end reward route
+
+//therapist route
+Route::resource('therapist',TherapistController::class);
+//end therapist route
 
 
 

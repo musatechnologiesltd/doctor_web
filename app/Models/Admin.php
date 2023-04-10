@@ -39,47 +39,65 @@ class Admin extends Authenticatable
 
     public function doctors()
     {
-        return $this->hasMany('App\Model\Doctor');
+        return $this->hasMany('App\Models\Doctor');
     }
 
-    public function walk_by_patients()
+    public function walkByPatients()
     {
-        return $this->hasMany('App\Model\WalkByPatient');
+        return $this->hasMany('App\Models\WalkByPatient');
     }
 
 
     public function patients()
     {
-        return $this->hasMany('App\Model\Patient');
+        return $this->hasMany('App\Models\Patient');
     }
 
 
-    public function patient_admits()
+    public function bills()
     {
-        return $this->hasMany('App\Model\PatientAdmit');
+        return $this->hasMany('App\Models\Bill');
     }
 
 
-    public function doctor_appointments()
+    public function patientAdmits()
     {
-        return $this->hasMany('App\Model\DoctorAppointment');
+        return $this->hasMany('App\Models\PatientAdmit');
     }
 
-    public function therapy_appointments()
+
+    public function doctorAppointments()
     {
-        return $this->hasMany('App\Model\TherapyAppointment');
+        return $this->hasMany('App\Models\DoctorAppointment');
+    }
+
+
+    public function patientHistories()
+    {
+        return $this->hasMany('App\Models\PatientHistory');
+    }
+
+    public function therapyAppointments()
+    {
+        return $this->hasMany('App\Models\TherapyAppointment');
     }
 
     public function staff()
     {
-        return $this->hasMany('App\Model\Staff');
+        return $this->hasMany('App\Models\Staff');
     }
 
 
 
     public function therapists()
     {
-        return $this->hasMany('App\Model\Therapist');
+        return $this->hasMany('App\Models\Therapist');
+    }
+
+
+    public function therapyAppointmentDateAndTimes()
+    {
+        return $this->hasMany('App\Models\TherapyAppointmentDateAndTime');
     }
 
 

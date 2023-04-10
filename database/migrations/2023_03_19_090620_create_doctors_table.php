@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('nid_number',25);
             $table->string('nationality',100);
             $table->string('years_of_experience');
-            $table->string('doctor_certificate');
+            $table->string('doctor_certificate')->nullable();
             $table->timestamps();
         });
     }

@@ -22,6 +22,10 @@ return new class extends Migration
             $table->string('date');
             $table->string('start_time');
             $table->string('end_time');
+            $table->string('serial');
+            $table->string('status');
+            $table->string('patient_id');
+            $table->string('admin_id');
             $table->timestamps();
         });
     }
